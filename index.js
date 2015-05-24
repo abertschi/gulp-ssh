@@ -135,7 +135,9 @@ GulpSSH.prototype.exec = function(commands, options) {
         .on('exit', function(code, signalName, didCoreDump, description) {
           if (ctx.ignoreErrors === false && code == null) {
             var message = signalName + ', ' + didCoreDump + ', ' + description;
-            outStream.emit('error', new gutil.PluginError(packageName, message));
+              if (ctx.ignoreErrors === false) {
+                  outStream.emit('error', new gutil.PluginError(packageName, message));
+              }
           }
         })
         .on('close', execCommand)
@@ -143,7 +145,10 @@ GulpSSH.prototype.exec = function(commands, options) {
            gutil.log(data.toString('utf8'));
          })
         .stderr.on('data', function(data) {
-          outStream.emit('error', new gutil.PluginError(packageName, data + ''));
+              gutil.log(data.toString('utf8'));
+              if (ctx.ignoreErrors === false) {
+                  outStream.emit('error', new gutil.PluginError(packageName, data + ''));
+              }
         });
     });
   }
