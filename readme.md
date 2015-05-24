@@ -1,3 +1,14 @@
+This is a fork of https://github.com/teambition/gulp-ssh. Currently implemented diff:
+
+- gulpSsh#exec function supports logging of data events.
+- if ignoreErrors is set to true, gulpSsh#exec will not break if executed commands fails
+
+Download forked release: https://github.com/abertschi/gulp-ssh/archive/v0.4.0-bean-npm-rel-2.tar.gz
+
+
+--------------------------------------------------
+
+
 # gulp-ssh v0.3.3
 
 > SSH and SFTP tasks for gulp
