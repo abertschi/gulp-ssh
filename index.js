@@ -139,6 +139,9 @@ GulpSSH.prototype.exec = function(commands, options) {
           }
         })
         .on('close', execCommand)
+        .stdout.on('data', function(data) {
+           gutil.log(data.toString('utf8'));
+         })
         .stderr.on('data', function(data) {
           outStream.emit('error', new gutil.PluginError(packageName, data + ''));
         });
